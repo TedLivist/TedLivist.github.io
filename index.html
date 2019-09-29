@@ -1,53 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>HTML lists</title>
-    
+        <title>Word Counter</title>
+        <style>
+            textarea {
+                width: 250px;
+                height: 250px;
+            }
+        </style>
     </head>
-
     <body>
-    
-        <h2>Continents, Countries and States</h2>
-            <ul>
-                <li><h2>Africa</h2>
-                    <ol>
-                        <li>
-                            <ul>
-                                <h3>Nigeria</h3>
-                                <ul>
-                                    <li>Enugu</li>
-                                    <li>Lagos</li>
-                                    <li>Abuja</li>
-                                </ul>
-                            </ul>
-                        </li>
 
-                        <li>
-                            <ul>
-                                <h3>Kenya</h3>
-                                <ul>
-                                    <li>Garissa</li>
-                                    <li>Homa Bay</li>
-                                    <li>Busia</li>
-                                </ul>
-                            </ul>
-                        </li>
+        <textarea></textarea>
+        <button>Count</button>
+        <p></p>
 
-                        <li>
-                            <ul>
-                                <h3>Egypt</h3>
-                                <ul>
-                                    <li>Upper Egypt</li>
-                                    <li>Lower Egypt</li>
-                                </ul>
-                            </ul>
-                        </li>
-                    </ol>
-                </li>
-            </ul>
+        <script>
+            let text = document.querySelector("textarea");
+            let countBtn = document.querySelector("button");
+            let para = document.querySelector("p");
+
+            countBtn.onclick = function() {
+
+                let textVal = text.value;
+
+                if (textVal !== "") {
+
+                    let finalItems = [];
+                    if (textVal.includes("\n")) {
+                        let textSplit = textVal.split("\n");
+                        console.log(textSplit.length);
+                        for (let i = 0; i < textSplit.length; i++) {
+                            if (textSplit[i].includes(" ")) {
+                                let items = textSplit[i].split(" ");
+                                
+                                finalItems.push(items);
+                            }
+                        }
+
+                        let flatFinal = finalItems.flat();
+
+                        console.log(flatFinal);
+
+                        for (let j = 0; j < flatFinal.length; j++) {
+                            if (flatFinal[j] === "") {
+                                console.log(flatFinal.splice(j, 1));
+                            }
+                        }
+
+                        para.textContent = "You have " + flatFinal.length + " word(s) in your message.";
+
+                        console.log(flatFinal);
+
+                    } else if (textVal.includes(" ")) {
+
+                        let spaceTextSplit = textVal.split(" ");
+                        console.log(spaceTextSplit.length);
+
+                        for (let i = 0; i < spaceTextSplit.length; i++) {
+                            if (spaceTextSplit[i] === "") {
+                                console.log(spaceTextSplit.splice(i, 1));
+                            }
+                        }
+
+                        para.textContent = "You have " + spaceTextSplit.length + " word(s) in your message.";
+
+                    } else {
+
+                        para.textContent = "You have 1 word in your message.";
+
+                    }
+
+                } else {
+
+                    para.textContent = "Please enter your message in the box";
+                    
+                }
+            }
+        </script>
+
     </body>
 </html>
