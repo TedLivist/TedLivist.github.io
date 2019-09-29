@@ -35,8 +35,11 @@
                         let textSplit = textVal.split("\n");
 
                         console.log(textSplit.length);
+
                         for (let i = 0; i < textSplit.length; i++) {
+
                             if (textSplit[i].includes(" ")) {
+
                                 let items = textSplit[i].split(" ");
                                 
                                 finalItems.push(items);
@@ -54,10 +57,14 @@
                         console.log(flatFinal);
 
                         for (let j = 0; j < flatFinal.length; j++) {
+
                             if (flatFinal[j] === "") {
+
                                 console.log(flatFinal.splice(j, 1));
                                 j--;
+                            
                             }
+                            
                         }
 
                         para.textContent = "You have " + flatFinal.length + " word(s) in your message.";
