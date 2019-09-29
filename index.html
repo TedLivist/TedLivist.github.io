@@ -25,11 +25,13 @@
 
             countBtn.onclick = function() {
 
-                let textVal = text.value;
+                
 
-                if (textVal !== "") {
+                if (text.value !== "") {
 
+                    let textVal = text.value;
                     let finalItems = [];
+
                     if (textVal.includes("\n")) {
                         let textSplit = textVal.split("\n");
                         console.log(textSplit.length);
