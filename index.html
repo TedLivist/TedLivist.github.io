@@ -105,6 +105,87 @@
 
             }
 
+            text.onblur = function() {
+            
+                if (text.value !== "") {
+
+                let textVal = text.value;
+                let finalItems = [];
+
+                if (textVal.includes("\n")) {
+
+                    let textSplit = textVal.split("\n");
+
+                    console.log(textSplit.length);
+
+                    for (let i = 0; i < textSplit.length; i++) {
+
+                        if (textSplit[i].includes(" ")) {
+
+                            let items = textSplit[i].split(" ");
+                            
+                            finalItems.push(items);
+
+                        } else {
+
+                            finalItems.push(textSplit[i]);
+                        
+                        }
+
+                    }
+
+                    let flatFinal = finalItems.flat();
+
+                    console.log(flatFinal);
+
+                    for (let j = 0; j < flatFinal.length; j++) {
+
+                        if (flatFinal[j] === "") {
+
+                            console.log(flatFinal.splice(j, 1));
+                            j--;
+                        
+                        }
+                        
+                    }
+
+                    para.textContent = "You have " + flatFinal.length + " word(s) in your message.";
+
+                    console.log(flatFinal);
+
+                } else if (textVal.includes(" ")) {
+
+                    let spacedText = textVal.split(" ");
+
+                    console.log(spacedText);
+
+                    for (let k = 0; k < spacedText.length; k++) {
+
+                        if (spacedText[k] === "") {
+
+                            console.log(spacedText.splice(k, 1));
+                            k--;
+
+                        }
+
+                    }
+
+                    para.textContent = "You have " + spacedText.length + " word(s) in your message.";
+
+                } else {
+
+                    para.textContent = "You have 1 word in your message"
+
+                }
+
+                } else {
+
+                para.textContent = "Please enter your message in the box";
+                text.focus();
+
+                }
+                            }
+
         </script>
 
     </body>
