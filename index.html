@@ -19,94 +19,17 @@
         <p></p>
 
         <script>
+            
             let text = document.querySelector("textarea");
             let countBtn = document.querySelector("button");
             let para = document.querySelector("p");
 
-            countBtn.onclick = function() {
+            countBtn.addEventListener("click", displayCount);
 
-                if (text.value !== "") {
+            text.addEventListener("blur", displayCount);
 
-                    let textVal = text.value;
-                    let finalItems = [];
+            function displayCount() {
 
-                    if (textVal.includes("\n")) {
-
-                        let textSplit = textVal.split("\n");
-
-                        console.log(textSplit.length);
-
-                        for (let i = 0; i < textSplit.length; i++) {
-
-                            if (textSplit[i].includes(" ")) {
-
-                                let items = textSplit[i].split(" ");
-                                
-                                finalItems.push(items);
-
-                            } else {
-
-                                finalItems.push(textSplit[i]);
-                            
-                            }
-
-                        }
-
-                        let flatFinal = finalItems.flat();
-
-                        console.log(flatFinal);
-
-                        for (let j = 0; j < flatFinal.length; j++) {
-
-                            if (flatFinal[j] === "") {
-
-                                console.log(flatFinal.splice(j, 1));
-                                j--;
-                            
-                            }
-                            
-                        }
-
-                        para.textContent = "You have " + flatFinal.length + " word(s) in your message.";
-
-                        console.log(flatFinal);
-
-                    } else if (textVal.includes(" ")) {
-
-                        let spacedText = textVal.split(" ");
-
-                        console.log(spacedText);
-
-                        for (let k = 0; k < spacedText.length; k++) {
-
-                            if (spacedText[k] === "") {
-
-                                console.log(spacedText.splice(k, 1));
-                                k--;
-
-                            }
-
-                        }
-
-                        para.textContent = "You have " + spacedText.length + " word(s) in your message.";
-
-                    } else {
-
-                        para.textContent = "You have 1 word in your message"
-
-                    }
-
-                } else {
-
-                    para.textContent = "Please enter your message in the box";
-                    text.focus();
-
-                }
-
-            }
-
-            text.onblur = function() {
-            
                 if (text.value !== "") {
 
                 let textVal = text.value;
@@ -149,7 +72,7 @@
                         
                     }
 
-                    para.textContent = "You have " + flatFinal.length + " word(s) in your message.";
+                    para.textContent = "You have " + flatFinal.length + " words in your message.";
 
                     console.log(flatFinal);
 
@@ -170,7 +93,7 @@
 
                     }
 
-                    para.textContent = "You have " + spacedText.length + " word(s) in your message.";
+                    para.textContent = "You have " + spacedText.length + " words in your message.";
 
                 } else {
 
@@ -184,7 +107,7 @@
                 text.focus();
 
                 }
-                            }
+            }
 
         </script>
 
